@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>كتاب حيّ — باب في السهو</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap">
+<style>
+:root{--pp:#f5edd8;--p2:#e9dcbc;--ink:#241d14;--fd:#1f5a34;--sn:#7a5a05;--mk:#6c6458;--er:#b3342c;--w1:#6b4423;--w2:#5a381c;padding:env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left)}
+:root[data-theme=dark]{--pp:#2a241c;--p2:#211c15;--ink:#efe6d2;--fd:#79d99a;--sn:#e6bf55;--mk:#b8ae9c;--er:#ff938a;--w1:#2b1b0e;--w2:#22150a;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;font:17px/1.8 Amiri,'Noto Naskh Arabic','Traditional Arabic',serif;color:var(--ink);background:repeating-linear-gradient(94deg,var(--w1) 0 10px,var(--w2) 10px 13px,var(--w1) 13px 28px)}
+button{font:inherit;cursor:pointer;border:1.5px solid var(--ink);background:var(--p2);color:var(--ink);border-radius:8px;padding:2px 12px;min-height:40px;transition:transform .15s cubic-bezier(.23,1,.32,1)}
+button:active{transform:scale(.97)}button:disabled{opacity:.4}
+@media(hover:hover) and (pointer:fine){button:hover:not(:disabled){background:var(--pp)}}
+.w{perspective:1700px;max-width:1100px;margin:0 auto;padding:14px 10px 6px}
+.bk{transform:rotateX(7deg);transform-origin:50% 100%;transform-style:preserve-3d;background:var(--pp);border-radius:5px 12px 12px 5px;box-shadow:0 2px 0 var(--p2),0 3px 0 #0004,0 5px 0 var(--p2),0 6px 0 #0004,0 8px 0 var(--p2),0 34px 44px #000a}
+.sp{display:grid;grid-template-columns:1fr 1fr;min-height:600px}
+.pg{padding:20px 24px;min-width:0}.lb{background:linear-gradient(90deg,var(--p2),var(--pp) 30%);border-radius:5px 0 0 5px}
+h2{font-size:26px;line-height:1.5;margin:0 0 4px;color:var(--fd)}h3{margin:0;color:var(--sn)}p{margin:6px 0}
+.cn{font-size:14px;color:var(--mk)}
+[data-k=b]{--k:var(--fd)}[data-k=a]{--k:var(--sn)}[data-k=n]{--k:var(--mk)}[data-k=x]{--k:var(--er)}
+.rl{border-inline-start:4px solid var(--k);padding:2px 12px;margin:8px 0;font-size:18px}
+.sc{font-size:15px;line-height:1.4;margin:3px;padding:3px 10px;border-color:var(--mk)}.sc.dn{border:2.5px solid var(--k)}.sc.on{outline:3px solid var(--sn)}
+canvas{width:100%;height:300px;display:block;border:2px solid var(--ink);border-radius:4px;background:linear-gradient(var(--pp),var(--p2));touch-action:none;cursor:grab}
+.q{font-size:19px;font-weight:700;margin:10px 0 4px;text-align:center}
+.ans,.ctl{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:6px 0}
+.vd{border:2px solid var(--k);border-radius:8px;padding:6px 12px;margin:8px 0;min-height:70px}.vd b{color:var(--k)}
+.cap{min-height:34px;text-align:center;font-size:18px}.sts{font-size:14px;text-align:center;color:var(--mk)}
+.bar{position:sticky;bottom:0;display:flex;gap:8px;justify-content:center;padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:#000b}
+#bk2{position:fixed;top:calc(10px + env(safe-area-inset-top));right:10px;z-index:40;display:none}
+.tm #bk2{display:block}.tm .ex,.tm .bar{display:none}
+.tm .w,.tm .bk,.tm .sp{perspective:none;transform:none;transform-style:flat}
+.tm .lb{position:fixed;inset:0;z-index:20;background:var(--pp);overflow:auto;padding-top:56px}.tm canvas{height:55vh}
+@media(max-width:760px){.sp{grid-template-columns:1fr}.bk{transform:rotateX(2deg)}.lb{border-radius:0 0 5px 5px}}
+</style>
+</head>
+<body>
+<div class="w"><div class="bk"><div class="sp">
+<div class="pg ex">
+<span class="cn">مختصر الأخضري — على مذهب الإمام مالك كما في المختصر</span>
+<h2>باب في السهو</h2>
+<div id="rls"></div>
+<p class="cn">اختر حالة، وتوقّع الحكم، ثم شاهد الشخصية تؤدّي السجود. اسحب المجسّم بإصبعك لتدويره.</p>
+<div id="lst"></div>
+<p class="sts" id="st1"></p>
+</div>
+<div class="pg lb">
+<h3>مختبر الفقه</h3>
+<canvas id="cv"></canvas>
+<div class="cap" id="cap"></div>
+<div class="q" id="q">اختر حالة من القائمة</div>
+<div class="ans" id="ans"></div>
+<div class="vd" id="vd" data-k="n"></div>
+<div class="ctl"><button id="pv">السابق</button><button id="pl">إعادة</button><button id="nx">التالي</button></div>
+<div class="sts" id="st2"></div>
+</div></div></div></div>
+<nav class="bar"><button id="tm">وضع المعلّم</button><button id="dk">الوضع الداكن</button></nav>
+<button id="bk2">رجوع</button>
+<script>
+const $=s=>document.querySelector(s),n=x=>`<bdi dir="ltr">${x}</bdi>`,RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+document.documentElement.dataset.theme=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+const K={b:'قبل السلام',a:'بعد السلام',n:'لا سجود عليه',x:'تبطل الصلاة'};
+/* القواعد وعبارات المختصر كما وردت في الملف */
+const R=[['n','وسجود السهو في الصلاة سنة.'],['b','فللنقصان سجدتان قبل السلام بعد تمام التشهدين يزيد بعدهما تشهداً آخر.'],['a','وللزيادة سجدتان بعد السلام يتشهد بعدها ويسلم تسليمة أخرى.'],['b','ومن نقص وزاد سجد قبل السلام.']];
+const Z=[
+['تركتَ سنتين فأكثر','ولا يكون السجود القبلي إلا لترك سنتين فأكثر.','b'],
+['نقصتَ وزدتَ في صلاة واحدة','ومن نقص وزاد سجد قبل السلام.','b'],
+['أسررتَ فيما يُجهر فيه','فمن أسر في الجهر سجد قبل السلام','b'],
+['جهرتَ فيما يُسرّ فيه','ومن جهر في السر سجد بعد السلام.','a'],
+['تكلمتَ ساهياً','ومن تكلم ساهياً سجد بعد السلام','a'],
+['سلّمتَ من ركعتين ساهياً','ومن سلم من ركعتين ساهياً سجد بعد السلام.','a'],
+['زدتَ ركعة أو ركعتين','ومن زاد في الصلاة ركعة أو ركعتين سجد بعد السلام','a'],
+['نفختَ في صلاتك ساهياً','ومن نفخ في صلاته ساهياً سجد بعد السلام، وإن كان عامداً بطلت صلاته.','a'],
+['نسيتَ السجود البعدي','ومن نسى السجود البعدي سجده ولو بعد عام.','a'],
+['نقصتَ من الفضائل','ومن نقص الفضائل فلا سجود عليه.','n'],
+['جهرتَ في القنوت','ومن جهر في القنوت فلا سجود عليه ولكنه يكره عمده.','n'],
+['تبسّمتَ','ولا شيء عليه في التبسم.','n'],
+['ضحكتَ في الصلاة','ومن ضحك في الصلاة بطلت سواء كان ساهياً أو عامداً','x'],
+['زدتَ في الصلاة مثلها','ومن زاد في الصلاة مثلها بطلت','x']];
+const SQ={
+b:[['sit','تمام التشهدين'],['sujud','سجدة السهو الأولى'],['sit','رفع'],['sujud','سجدة السهو الثانية'],['sit','تشهد آخر بعدهما'],['salam','ثم السلام']],
+a:[['sit','تمام التشهدين'],['salam','السلام'],['sujud','سجدة السهو الأولى'],['sit','رفع'],['sujud','سجدة السهو الثانية'],['sit','يتشهد بعدهما'],['salam','ويسلم تسليمة أخرى']],
+n:[['sit','تمام التشهدين'],['salam','يسلّم ولا سجود عليه']],
+x:[['stand','وقع ما يبطل'],['stand','بطلت الصلاة']]};
+/* وضعيات: رأس، كتف، حوض، مرفق، يد، ركبة، قدم (س،ص) + التفات الرأس */
+const P={stand:[100,40,100,60,100,110,102,86,103,112,100,142,100,172,0],ruku:[46,100,66,102,112,106,88,120,104,142,112,142,112,172,0],sujud:[58,158,82,138,138,118,90,152,72,166,116,164,150,168,0],sit:[118,64,118,86,130,142,124,114,110,142,100,164,136,168,0],salam:[112,64,118,86,130,142,124,114,110,142,100,164,136,168,1.3]};
+const cv=$('#cv'),g=cv.getContext('2d');
+let yaw=.55,pit=.2,cur=P.sit.slice(),raf,W,H,sel=-1,sq=[],k=0,tmr,done={},ok=0;
+const P3=(x,y,z)=>{const c=Math.cos(yaw),s=Math.sin(yaw);let X=x*c+z*s,Z=-x*s+z*c;const a=Math.cos(pit),b=Math.sin(pit),Y=y*a-Z*b;Z=y*b+Z*a;const f=500/(500+Z),S=H/200;return[W/2+X*f*S,H*.48+Y*f*S,Z,f*S]};
+function draw(){const d=devicePixelRatio||1;W=cv.clientWidth;H=cv.clientHeight;if(cv.width!=W*d){cv.width=W*d;cv.height=H*d}g.setTransform(d,0,0,d,0,0);g.clearRect(0,0,W,H);
+const v=cur.map((a,i)=>i<14?a-100:a),[hx,hy,sx,sy,px,py,ex,ey,ax,ay,kx,ky,fx,fy,tn]=v;
+g.beginPath();[[-105,-52],[105,-52],[105,52],[-105,52]].forEach(([x,z],i)=>{const p=P3(x,72,z);i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1])});g.closePath();g.fillStyle='#2d6a47';g.fill();g.strokeStyle='#c9a227';g.lineWidth=3;g.stroke();
+g.beginPath();for(let t=0;t<25;t++){const p=P3((hx+fx)/2+(Math.abs(hx-fx)/2+26)*Math.cos(t/4),72,15*Math.sin(t/4));t?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1])}g.fillStyle='rgba(0,0,0,.3)';g.fill();
+const it=[],seg=(A,B,o)=>{g.beginPath();g.moveTo(A[0]+o,A[1]+o);g.lineTo(B[0]+o,B[1]+o);g.stroke()},
+cap=(a,b,r,sk)=>{const A=P3(...a),B=P3(...b);it.push({z:(A[2]+B[2])/2,f(){g.lineCap='round';g.strokeStyle='#3a2e20';g.lineWidth=(2*r+2.4)*A[3];seg(A,B,0);g.strokeStyle=sk?'#c99a76':'#efe9d8';g.lineWidth=2*r*A[3];seg(A,B,0);g.strokeStyle='rgba(255,255,255,.35)';g.lineWidth=r*.7*A[3];seg(A,B,-r*.3*A[3])}})};
+cap([sx,sy,0],[px,py,0],13);cap([sx,sy,-15],[sx,sy,15],5);cap([px,py,-7],[px,py,7],7);cap([sx,sy,0],[hx,hy,0],4,1);
+for(const z of[-1,1]){cap([sx,sy,15*z],[ex,ey,17*z],4.5);cap([ex,ey,17*z],[ax,ay,16*z],4,1);cap([px,py,7*z],[kx,ky,8*z],6.5);cap([kx,ky,8*z],[fx,fy,9*z],5);cap([fx,fy,9*z],[fx-13,fy+1,9*z],3.5,1)}
+const Hd=P3(hx,hy,0),nz=P3(hx-11*Math.cos(tn),hy,11*Math.sin(tn));
+it.push({z:Hd[2],f(){const r=11*Hd[3],gr=g.createRadialGradient(Hd[0]-r*.3,Hd[1]-r*.3,1,Hd[0],Hd[1],r);gr.addColorStop(0,'#e0b894');gr.addColorStop(1,'#b98a66');g.beginPath();g.arc(Hd[0],Hd[1],r,0,7);g.fillStyle=gr;g.fill();g.lineWidth=1.5;g.strokeStyle='#3a2e20';g.stroke();g.beginPath();g.arc(Hd[0],Hd[1]-r*.2,r*1.02,Math.PI*1.05,Math.PI*1.95);g.fillStyle='#f4f1e6';g.fill();g.stroke();if(nz[2]<Hd[2]){g.beginPath();g.arc(nz[0],nz[1],2.2*Hd[3],0,7);g.fillStyle='#6b4a32';g.fill()}}});
+it.sort((a,b)=>b.z-a.z).forEach(o=>o.f())}
+const go=t=>{cancelAnimationFrame(raf);const s=cur.slice(),t0=performance.now(),D=RM?1:520,f=now=>{const q=Math.min(1,(now-t0)/D),e=1-(1-q)**3;cur=s.map((x,i)=>x+(t[i]-x)*e);draw();if(q<1)raf=requestAnimationFrame(f)};f(t0)};
+const step=i=>{k=i;const[p,t]=sq[i];go(P[p]);$('#cap').innerHTML=`${n(i+1+' / '+sq.length)} — ${t}`;$('#pv').disabled=!i;$('#nx').disabled=i==sq.length-1};
+const play=()=>{if(!sq.length)return;clearInterval(tmr);step(0);tmr=setInterval(()=>{k<sq.length-1?step(k+1):clearInterval(tmr)},1800)};
+const cnt=c=>Z.filter(x=>x[2]==c).length;
+function stats(){$('#st1').innerHTML=`عدد الحالات ${n(Z.length)} · قبل السلام ${n(cnt('b'))} · بعد السلام ${n(cnt('a'))} · لا سجود ${n(cnt('n'))} · تبطل ${n(cnt('x'))}`;const m=Object.keys(done).length;$('#st2').innerHTML=`أجبتَ عن ${n(m)} من ${n(Z.length)} · صحيح ${n(ok)}`+(m==Z.length?` · ${'★'.repeat(ok>12?3:ok>8?2:1)}`:'')}
+function pick(i){clearInterval(tmr);sel=i;sq=[];document.querySelectorAll('.sc').forEach((b,j)=>b.classList.toggle('on',j==i));$('#q').textContent='ماذا يلزمك إذا '+Z[i][0]+'؟';$('#vd').innerHTML='';$('#cap').innerHTML='';$('#pv').disabled=$('#nx').disabled=true;
+$('#ans').innerHTML=Object.keys(K).map(c=>`<button data-a="${c}" data-k="${c}">${K[c]}</button>`).join('');go(P.sit)}
+function answer(c){if(sel<0)return;const[,qt,r]=Z[sel],good=c==r;if(!(sel in done)){done[sel]=1;if(good)ok++;const b=document.querySelectorAll('.sc')[sel];b.classList.add('dn');b.dataset.k=r;b.textContent=(good?'✓ ':'✗ ')+Z[sel][0]}
+$('#vd').dataset.k=r;$('#vd').innerHTML=`<b>${good?'أحسنت! ':'ليس كذلك. '}الحكم: ${K[r]}</b><br>«${qt}»`;$('#ans').innerHTML='';sq=SQ[r];stats();play()}
+$('#rls').innerHTML=R.map(([c,t])=>`<div class="rl" data-k="${c}">${t}</div>`).join('');
+$('#lst').innerHTML=Z.map((z,i)=>`<button class="sc" data-i="${i}">${z[0]}</button>`).join('');
+$('#lst').onclick=e=>{const b=e.target.closest('.sc');if(b)pick(+b.dataset.i)};
+$('#ans').onclick=e=>{const b=e.target.closest('[data-a]');if(b)answer(b.dataset.a)};
+$('#pv').onclick=()=>{clearInterval(tmr);step(k-1)};$('#nx').onclick=()=>{clearInterval(tmr);step(k+1)};$('#pl').onclick=play;
+let dx,dy;cv.onpointerdown=e=>{dx=e.clientX;dy=e.clientY;cv.setPointerCapture(e.pointerId);cv.style.cursor='grabbing'};
+cv.onpointermove=e=>{if(dx==null)return;yaw+=(e.clientX-dx)*.01;pit=Math.max(-.15,Math.min(.7,pit+(e.clientY-dy)*.005));dx=e.clientX;dy=e.clientY;draw()};
+cv.onpointerup=()=>{dx=null;cv.style.cursor='grab'};
+addEventListener('resize',draw);
+$('#tm').onclick=()=>{document.body.classList.add('tm');draw()};$('#bk2').onclick=()=>{document.body.classList.remove('tm');draw()};
+$('#dk').onclick=()=>{const r=document.documentElement;r.dataset.theme=r.dataset.theme=='dark'?'light':'dark'};
+stats();draw();
+</script>
+</body>
+</html>
